@@ -19,9 +19,9 @@ limitations under the License.
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>apigee-devrel</groupId>
-	<artifactId>airports-cicd</artifactId>
+	<artifactId>example-v1</artifactId>
 	<version>v1</version>
-	<name>airports-cicd${deployment.suffix}</name>
+	<name>example-v1${deployment.suffix}</name>
 	<packaging>pom</packaging>
 
 	<pluginRepositories>
@@ -330,7 +330,7 @@ limitations under the License.
 					<basedir>${target.root.dir}</basedir>
 					<includes>
 						<include>test/integration/support/init.js</include>
-						<include>apiproxy/airports-cicd-v1.xml</include>
+						<include>apiproxy/example-v1-v1.xml</include>
 						<include>apiproxy/proxies/default.xml</include>
 					</includes>
 					<replacements>
@@ -339,8 +339,8 @@ limitations under the License.
 							<value>${TEST_HOST}</value>
 						</replacement>
  						<replacement>
-							<token>/airports-cicd/v1</token>
-							<value>/airports-cicd${deployment.suffix}/v1</value>
+							<token>/example/v1</token>
+							<value>/example${deployment.suffix}/v1</value>
 						</replacement>
 						<replacement>
 							<token>@description</token>
