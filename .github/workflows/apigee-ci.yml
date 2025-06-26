@@ -83,7 +83,7 @@ jobs:
         run: ./node_modules/.bin/spectral lint -r ./test/spectral/.spectral.yaml -f html -o spectral-report.html ./specs/airport-1.0.0.yaml  || true  # catch all errors for demo purpose 
 
       - name: Archive Spectral results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: spectral-report
           path:  ./spectral-report.html
@@ -95,7 +95,7 @@ jobs:
         run: ./node_modules/apigeelint/cli.js -s ./apiproxy -f html.js -e PO013,PO025 > ./apigeelint-out.html
 
       - name: Archive Apigeelint results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: apigeelint-report
           path: ./apigeelint-out.html
@@ -107,7 +107,7 @@ jobs:
         run : ./node_modules/eslint/bin/eslint.js -c ./.eslintrc-jsc.yml --format html ./apiproxy/resources/jsc > ./eslint-out.html
 
       - name: Archive esLint results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: eslint-report
           path: ./eslint-out.html
@@ -119,7 +119,7 @@ jobs:
         run: ./node_modules/nyc/bin/nyc.js --reporter=html --reporter=text ./node_modules/mocha/bin/_mocha ./test/unit
   
       - name: Archive Mocha results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: mocha-report
           path:  ./coverage/index.html
@@ -167,8 +167,6 @@ jobs:
         if: env.API_VERSION == 'googleapi'
         run: mvn apigee-enterprise:deploy -q -Pgoogleapi -Denv=$APIGEE_ENV -Dsa=sa.json -Dorg=$APIGEE_ORG -Ddeployment.suffix=$APIGEE_DEPLOYMENT_SUFFIX  
 
-
-
   # Run Integration testing (Apickli) + upload artifact (cucumber_report.html)
       - name: apickli
         run: |
@@ -184,7 +182,7 @@ jobs:
           node ./test/integration/index.js
 
       - name: Archive Apickli results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: apickli-report
           path: ./cucumber_report.html
