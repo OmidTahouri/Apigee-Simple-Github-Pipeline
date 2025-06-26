@@ -29,7 +29,8 @@
       "mocha": "^7.2.0",
       "nyc": "^15.0.1",
       "sinon": "^9.0.2", 
-      "@stoplight/spectral": "latest"
+      "@stoplight/spectral": "latest",
+      "openapi2apigee": "^1.1.0"
     }
   }
   

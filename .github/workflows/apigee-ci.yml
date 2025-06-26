@@ -5,17 +5,11 @@ on: push
   
 env:
   API_VERSION: googleapi 
-  # or 
-  #API_VERSION: apigeeapi
 
   # Default Target Apigee Organization et environment (can be also be dynamically defined in [Set Variables *] steps)
-  DEFAULT_APIGEE_ORG: bap-emea-apigee-5
-  DEFAULT_APIGEE_ENV: default-dev
-  TEST_HOST: 34.117.38.184.nip.io
-
-  # Retrieve Apigee UserID and password from repository settings (secrets)
-  APIGEE_CREDS_USR: ${{ secrets.APIGEE_CREDS_USR }}
-  APIGEE_CREDS_PSW: ${{ secrets.APIGEE_CREDS_PSW }}
+  DEFAULT_APIGEE_ORG: caramel-medley
+  DEFAULT_APIGEE_ENV: dev
+  TEST_HOST: 34.144.237.224.nip.io
 
   GCP_SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
 
@@ -76,6 +70,13 @@ jobs:
   # Install dependencies (npm)
       - name: Install Dependencies
         run: npm install --silent --no-fund
+
+  # Generate Apigee Proxy from OpenAPI Spec
+      - name: Generate Apigee API Proxy from OpenAPI
+        run: |
+          # Clean existing proxy content before generation
+          rm -rf ./apiproxy/*
+          npx openapi2apigee -s ./oas.yaml -o ./apiproxy --proxy-name example-v1
 
   # Validate Specification file (OAS, Swagger) using Stoplight Spectral
   # + upload artifact (spectral-report.html)
@@ -201,4 +202,3 @@ jobs:
           name: apickli-report
           path: ./cucumber_report.html
           retention-days: 5
-
