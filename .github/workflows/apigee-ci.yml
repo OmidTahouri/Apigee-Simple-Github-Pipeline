@@ -75,7 +75,7 @@ jobs:
         run: |
           # Clean existing proxy content before generation
           rm -rf ./apiproxy/*
-          npx openapi2apigee -s ./oas.yaml -o ./apiproxy --proxy-name example-v1
+          npx openapi2apigee generateApi example-v1 -s ./oas.yaml -D -d ./dist/
 
   # Validate Specification file (OAS, Swagger) using Stoplight Spectral
   # + upload artifact (spectral-report.html)
