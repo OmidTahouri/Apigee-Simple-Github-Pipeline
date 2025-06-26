@@ -51,7 +51,6 @@ jobs:
           echo "APIGEE_ORG=$(echo $DEFAULT_APIGEE_ORG)" >> $GITHUB_ENV
           echo "APIGEE_ENV=$(echo $DEFAULT_APIGEE_ENV)" >> $GITHUB_ENV
 
-
   # Create Dependencies (npm) Cache 
       - name: Cache node modules
         uses: actions/cache@v3
@@ -148,15 +147,7 @@ jobs:
         run: | 
           echo $GCP_SERVICE_ACCOUNT > sa.json
 
-
-
   # Deploy Apigee Config (Apigee [Config] Maven plugin)
-      - name: mvn deploy cfg edge
-        if: env.API_VERSION == 'apigeeapi'
-        run:  |
-          sed -i "s/target_apigee_env/$APIGEE_ENV/g" ./EdgeConfig/edge.json
-          mvn install -q -Papigeeapi -Dapigee.org=$APIGEE_ORG -Denv=$APIGEE_ENV -Dapigee.username=$APIGEE_CREDS_USR -Dapigee.password=$APIGEE_CREDS_PSW -Dapigee.config.file=./EdgeConfig/edge.json -Dapigee.config.options=update
-
       - name: mvn deploy config xhybrid
         if: env.API_VERSION == 'googleapi'
         run:  |
@@ -171,10 +162,6 @@ jobs:
 
       - name: mvn config
         run: mvn apigee-enterprise:configure -q -P$API_VERSION -Dorg=$APIGEE_ORG -Denv=$APIGEE_ENV  -Ddeployment.suffix=$APIGEE_DEPLOYMENT_SUFFIX 
-
-      - name: mvn deploy proxy edge
-        if: env.API_VERSION == 'apigeeapi'
-        run: mvn apigee-enterprise:deploy -q -Papigeeapi -Dorg=$APIGEE_ORG -Denv=$APIGEE_ENV -Dpassword=$APIGEE_CREDS_PSW -Dusername=$APIGEE_CREDS_USR -Ddeployment.suffix=$APIGEE_DEPLOYMENT_SUFFIX  
 
       - name: mvn deploy proxy xhybrid
         if: env.API_VERSION == 'googleapi'
