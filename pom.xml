@@ -19,7 +19,7 @@ limitations under the License.
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>apigee-devrel</groupId>
-	<artifactId>example-v1</artifactId>
+	<artifactId>example</artifactId>
 	<version>v1</version>
 	<name>example-v1${deployment.suffix}</name>
 	<packaging>pom</packaging>
