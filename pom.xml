@@ -21,7 +21,7 @@ limitations under the License.
 	<groupId>apigee-devrel</groupId>
 	<artifactId>example</artifactId>
 	<version>v1</version>
-	<name>example-v1${deployment.suffix}</name>
+	<name>example${deployment.suffix}</name>
 	<packaging>pom</packaging>
 
 	<pluginRepositories>
