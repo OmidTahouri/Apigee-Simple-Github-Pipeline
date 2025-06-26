@@ -330,7 +330,7 @@ limitations under the License.
 					<basedir>${target.root.dir}</basedir>
 					<includes>
 						<include>test/integration/support/init.js</include>
-						<include>apiproxy/example-v1-v1.xml</include>
+						<include>apiproxy/example-v1.xml</include>
 						<include>apiproxy/proxies/default.xml</include>
 					</includes>
 					<replacements>

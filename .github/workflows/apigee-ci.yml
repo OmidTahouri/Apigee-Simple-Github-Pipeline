@@ -75,19 +75,19 @@ jobs:
         run: |
           # Clean existing proxy content before generation
           rm -rf ./apiproxy/*
-          npx openapi2apigee generateApi example-v1 -s ./oas.yaml -d ./dist/
+          npx openapi2apigee generateApi example-v1 -s ./oas.yaml -d ./
 
-  # Validate Specification file (OAS, Swagger) using Stoplight Spectral
-  # + upload artifact (spectral-report.html)
-      - name: spectral
-        run: ./node_modules/.bin/spectral lint -r ./test/spectral/.spectral.yaml -f html -o spectral-report.html ./specs/airport-1.0.0.yaml  || true  # catch all errors for demo purpose 
+  # # Validate Specification file (OAS, Swagger) using Stoplight Spectral
+  # # + upload artifact (spectral-report.html)
+  #     - name: spectral
+  #       run: ./node_modules/.bin/spectral lint -r ./test/spectral/.spectral.yaml -f html -o spectral-report.html ./specs/airport-1.0.0.yaml  || true  # catch all errors for demo purpose 
 
-      - name: Archive Spectral results
-        uses: actions/upload-artifact@v4
-        with:
-          name: spectral-report
-          path:  ./spectral-report.html
-          retention-days: 5
+  #     - name: Archive Spectral results
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: spectral-report
+  #         path:  ./spectral-report.html
+  #         retention-days: 5
 
 
   # # Run apigeeLint test + upload artifact (apigeelint-out.html)
