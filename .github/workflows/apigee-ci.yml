@@ -159,8 +159,8 @@ jobs:
       - name: mvn package
         run: mvn process-resources -P$API_VERSION -Dcommit=$GIT_COMMIT -Dauthor=$AUTHOR_EMAIL -Ddeployment.suffix=$APIGEE_DEPLOYMENT_SUFFIX
 
-      - name: mvn config
-        run: mvn apigee-enterprise:configure -q -P$API_VERSION -Dorg=$APIGEE_ORG -Denv=$APIGEE_ENV  -Ddeployment.suffix=$APIGEE_DEPLOYMENT_SUFFIX 
+      # - name: mvn config
+      #   run: mvn apigee-enterprise:configure -q -P$API_VERSION -Dorg=$APIGEE_ORG -Denv=$APIGEE_ENV  -Ddeployment.suffix=$APIGEE_DEPLOYMENT_SUFFIX 
 
       - name: mvn deploy proxy xhybrid
         if: env.API_VERSION == 'googleapi'
