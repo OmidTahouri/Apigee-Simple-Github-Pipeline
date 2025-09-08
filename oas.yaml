@@ -74,13 +74,13 @@ paths:
             - 'read:pets'
       requestBody:
         $ref: '#/components/requestBodies/Pet'
-  /pet/locateByStatus:
+  /pet/findByStatus:
     get:
       tags:
         - pet
       summary: Finds Pets by status
       description: Multiple status values can be provided with comma separated strings
-      operationId: locatePetsByStatus
+      operationId: findPetsByStatus
       parameters:
         - name: status
           in: query
